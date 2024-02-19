@@ -10,4 +10,12 @@ public class Car extends Vehicle{
 		this.entertainmentAmount = entertainmentAmount;
 	}
 
+	public Integer getEntertainmentAmount() {
+		return entertainmentAmount;
+	}
+
+	public void setEntertainmentAmount(Integer entertainmentAmount) {
+		this.entertainmentAmount = entertainmentAmount;
+	}
+
 }

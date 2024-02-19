@@ -96,16 +96,16 @@ public class Main {
 	                System.out.println("Invalid License format. Please follow the format: A 1234 ABC");
 	            }
 	        }
-			while(topSpeed < 100 || topSpeed < 250) {
+			while(topSpeed < 100 || topSpeed > 250) {
 				System.out.print("Input Top Speed [100 <= topSpeed <= 250]: ");
 				topSpeed = scan.nextInt();
 			}
-			while(gasCap < 30 || gasCap < 60) {
+			while(gasCap < 30 || gasCap > 60) {
 				System.out.print("Input Gas Capacity [30 <= topSpeed <= 60]: ");
 				gasCap = scan.nextInt();
 			}
-			while(wheel < 2 || wheel < 3) {
-				System.out.print("Input Wheel [4 <= wheel <= 6]: ");
+			while(wheel < 2 || wheel > 3) {
+				System.out.print("Input Wheel [2 <= wheel <= 3]: ");
 				wheel = scan.nextInt();
 			}
 			System.out.print("Input Type [Automatic | Manual]: ");
@@ -153,13 +153,24 @@ public class Main {
 		        Vehicle vh = vehicles.get(input - 1);
 		        System.out.printf("| %-3d | %-10s | %-10s | %-13s |\n", input, vh.getBrand(), vh.getName(), vh.getLicenseNumber());
 		        System.out.println("-------------------------------------------------");
-
-		        System.out.println("Additional Information:");
-		        System.out.println("-------------------------------------------------");
-		        System.out.printf("| %-6s | %-12s | %-9s | %-7s |\n", "Type", "Gas Capacity", "Top Speed", "Wheels");
-		        System.out.println("-------------------------------------------------");
-		        System.out.printf("| %-6s | %-12d | %-9d | %-7d |\n", vh.getType(), vh.getGasCap(), vh.getTopSpeed(), vh.getWheel());
-		        System.out.println("-------------------------------------------------");
+		        
+		        if(vehicles.get(input-1) instanceof Motorcycle) {
+		        	Motorcycle m = (Motorcycle) vehicles.get(input - 1);
+		        	 System.out.println("Additional Information:");
+				        System.out.println("--------------------------------------------------------------");
+				        System.out.printf("| %-6s | %-12s | %-9s | %-7s | %-7s |\n", "Type", "Gas Capacity", "Top Speed", "Wheels", "Helm Amount");
+				        System.out.println("--------------------------------------------------------------");
+				        System.out.printf("| %-6s | %-12d | %-9d | %-7d | %-7d |\n", vh.getType(), vh.getGasCap(), vh.getTopSpeed(), vh.getWheel(), m.getHelmAmount());
+				        System.out.println("--------------------------------------------------------------");
+		        }else {
+		        	Car c = (Car) vehicles.get(input - 1);
+		        	 System.out.println("Additional Information:");
+				        System.out.println("--------------------------------------------------------------");
+				        System.out.printf("| %-6s | %-12s | %-9s | %-7s | %-7s |\n", "Type", "Gas Capacity", "Top Speed", "Wheels", "Entertaiment Amount");
+				        System.out.println("--------------------------------------------------------------");
+				        System.out.printf("| %-6s | %-12d | %-9d | %-7d | %-7d |\n", vh.getType(), vh.getGasCap(), vh.getTopSpeed(), vh.getWheel(), c.getEntertainmentAmount());
+				        System.out.println("--------------------------------------------------------------");
+		        }
 		    }
 		    scan.nextLine(); 
 		    if(vehicles.get(input-1) instanceof Car) {
@@ -169,8 +180,14 @@ public class Main {
 			    }
 		    }
 		    else if(vehicles.get(input-1) instanceof Motorcycle) {
-		    	System.out.println((Motorcycle) vehicles.get(input-1) + " is standing!");
+		        Motorcycle motorcycle = (Motorcycle) vehicles.get(input - 1);
+		        System.out.println(motorcycle.getName() + " is standing!");
+		        System.out.print("Enter the price of the helmet: ");
+		        int price = scan.nextInt();
+		        motorcycle.setHelmPrice(price);
+		        System.out.println("Total price for helmets: " + motorcycle.getHelmPrice());
 		    }
+		    
 	}
 	
 	public static boolean validateLicenseNumber(String licenseNumber) {

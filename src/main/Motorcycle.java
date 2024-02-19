@@ -9,4 +9,22 @@ public class Motorcycle extends Vehicle{
 	}
 
 	Integer helmAmount;
+	Integer helmPrice; 
+	public Integer getHelmAmount() {
+		return helmAmount;
+	}
+
+	public void setHelmAmount(Integer helmAmount) {
+		this.helmAmount = helmAmount;
+	}
+
+	public Integer getHelmPrice() {
+		return helmPrice;
+	}
+
+	public void setHelmPrice(Integer helmPrice) {
+		this.helmPrice = helmPrice * this.helmAmount;
+	}
+	
+	
 }
